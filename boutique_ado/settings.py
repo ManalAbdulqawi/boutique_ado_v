@@ -33,7 +33,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [ '127.0.0.1', # local host
                   'localhost', # listen for stripe webhooks
-                  'https://boutique-online-d8697473e2f0.herokuapp.com/'#heruko application,
+                  '.herokuapp.com'#heruko application,
                   ]
 
 
