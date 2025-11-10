@@ -1,0 +1,49 @@
+<script type="text/javascript">
+    // Function to handle enabling/disabling minus button
+    function handleEnableDisable($qtyInput) {
+        var currentValue = parseInt($qtyInput.val());
+        var $formGroup = $qtyInput.closest('.input-group');
+
+        var $minusBtn = $formGroup.find('.decrement-qty');
+        var $plusBtn = $formGroup.find('.increment-qty');
+
+        // Disable minus if at minimum
+        $minusBtn.prop('disabled', currentValue <= 1);
+        // Disable plus if at maximum
+        $plusBtn.prop('disabled', currentValue >= 99);
+    }
+
+    // Initialize all inputs on page load
+    $(document).ready(function() {
+        $('.qty-input').each(function() {
+            handleEnableDisable($(this));
+        });
+    });
+
+    // When the input value changes
+    $('.qty-input').change(function() {
+        handleEnableDisable($(this));
+    });
+
+    // Increment button click
+    $('.increment-qty').click(function(e) {
+        e.preventDefault();
+        var $formGroup = $(this).closest('.input-group');
+        var $qtyInput = $formGroup.find('.qty-input');
+        var currentValue = parseInt($qtyInput.val());
+        if (currentValue < 99) {
+            $qtyInput.val(currentValue + 1).change();
+        }
+    });
+
+    // Decrement button click
+    $('.decrement-qty').click(function(e) {
+        e.preventDefault();
+        var $formGroup = $(this).closest('.input-group');
+        var $qtyInput = $formGroup.find('.qty-input');
+        var currentValue = parseInt($qtyInput.val());
+        if (currentValue > 1) {
+            $qtyInput.val(currentValue - 1).change();
+        }
+    });
+</script>
